@@ -34,6 +34,9 @@ curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
 $response = curl_exec($ch);
 curl_close($ch);
 
+print_r($response);
+die();
+
 echo json_encode([
     'status' => $httpCode,
     'response' => json_decode($response, true)
