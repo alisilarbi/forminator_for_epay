@@ -3,7 +3,7 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-require_once __DIR__ . '/../../../env.php';
+require_once __DIR__ . '../env.php';
 loadEnv();
 
 if (!isset($_GET['amount']) || !is_numeric($_GET['amount'])) {
