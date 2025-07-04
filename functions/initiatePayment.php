@@ -1,5 +1,8 @@
 <?php
 
+echo 'ali';
+exit();
+
 require_once 'env.php';
 loadEnv();
 
@@ -28,3 +31,4 @@ echo json_encode([
     'status' => $httpCode,
     'response' => json_decode($response, true)
 ]);
+
