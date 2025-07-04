@@ -3,9 +3,7 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-// require_once __DIR__ . './env.php';
 require __DIR__ . '/../env.php';
-
 loadEnv();
 
 if (!isset($_GET['amount']) || !is_numeric($_GET['amount'])) {
@@ -23,6 +21,10 @@ $headers = [
     "x-app-key: " . getenv('X_APP_KEY'),
     "x-app-secret: " . getenv('X_APP_SECRET')
 ];
+
+print_r($headers);
+die();
+
 
 $data = json_encode([
     "amount" => $amount
