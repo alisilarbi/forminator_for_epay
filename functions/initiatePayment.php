@@ -8,8 +8,7 @@ ini_set('display_errors', 1);
 require_once 'env.php';
 loadEnv();
 
-echo 'ali';
-exit();
+
 
 $amount = isset($_GET['amount']) ? $_GET['amount'] : null;
 
@@ -23,6 +22,9 @@ $headers = [
 $data = json_encode([
     "amount" => $amount
 ]);
+
+// print_r($data);
+// die();
 
 $ch = curl_init($url);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
