@@ -22,10 +22,6 @@ $headers = [
     "x-app-secret: " . getenv('X_ZAKAT_APP_SECRET')
 ];
 
-print_r($headers);
-die();
-
-
 $data = json_encode([
     "amount" => $amount
 ]);
