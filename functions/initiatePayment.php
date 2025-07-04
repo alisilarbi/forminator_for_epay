@@ -18,8 +18,8 @@ $url = "https://epay.guiddini.dz/api/payment/initiate";
 $headers = [
     "Accept: application/json",
     "Content-Type: application/json",
-    "x-app-key: " . getenv('X_APP_KEY'),
-    "x-app-secret: " . getenv('X_APP_SECRET')
+    "x-app-key: " . getenv('X_ZAKAT_APP_KEY'),
+    "x-app-secret: " . getenv('X_ZAKAT_APP_SECRET')
 ];
 
 print_r($headers);
