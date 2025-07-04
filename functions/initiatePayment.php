@@ -3,12 +3,8 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-
-
-require_once './env.php';
+require_once '../env.php';
 loadEnv();
-
-
 
 $amount = isset($_GET['amount']) ? $_GET['amount'] : null;
 
