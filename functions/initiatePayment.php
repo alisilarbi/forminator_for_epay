@@ -16,7 +16,7 @@ if (!isset($_GET['amount']) || !is_numeric($_GET['amount'])) {
 
 $amount = $_GET['amount'];
 
-$url = "https://epay.guiddini.dz/payment/initiate";
+$url = "https://epay.guiddini.dz/api/payment/initiate";
 $headers = [
     "Accept: application/json",
     "Content-Type: application/json",
