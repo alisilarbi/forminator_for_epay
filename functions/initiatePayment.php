@@ -3,11 +3,13 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-echo 'ali';
-exit();
+
 
 require_once 'env.php';
 loadEnv();
+
+echo 'ali';
+exit();
 
 $amount = isset($_GET['amount']) ? $_GET['amount'] : null;
 
