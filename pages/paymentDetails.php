@@ -94,7 +94,8 @@ if ($transaction && isset($transaction['status'])) {
         <div>
             <label for="emailInput">إرسال إيصال الدفع:</label>
             <div class="d-flex flex-row justify-content-between">
-                <a class="btn btn-outline-secondary mx-2" href="<?php echo site_url('/wp-content/plugins/forminator_for_satim/functions/generateReceiptPDF.php'); ?>" target="_blank">تحميل PDF</a>
+                <a class="btn btn-outline-secondary mx-2" href="<?php echo site_url('/wp-content/plugins/epay/functions/downloadPdf.php?order_number=' . $orderNumber); ?>" target="_blank">تحميل PDF</a>
+
             </div>
         </div>
     </div>
