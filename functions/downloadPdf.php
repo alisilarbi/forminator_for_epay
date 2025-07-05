@@ -9,7 +9,7 @@ $orderNumber = $_GET['order_number'] ?? null;
 
 
 $url = "https://epay.guiddini.dz/api/payment/receipt";
-$data = array('order_number' => 'K60RQ9BHHF4S8COGS840');
+$data = array('order_number' => $orderNumber);
 
 $headers = [
     "Accept: application/json",

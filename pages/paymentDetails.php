@@ -75,11 +75,11 @@ if ($transaction && isset($transaction['status'])) {
                 </tr>
                 <tr>
                     <th class="fixed-width-column" scope="row">رقم الطلب</th>
-                    <td><?php echo $transaction['order_number']; ?></td>
+                    <td><?php echo $transaction['order_id']; ?></td>
                 </tr>
                 <tr>
                     <th class="fixed-width-column" scope="row">معرف المعاملة</th>
-                    <td><?php echo $transaction['order_id']; ?></td>
+                    <td><?php echo $transaction['order_number']; ?></td>
                 </tr>
                 <tr>
                     <th class="fixed-width-column" scope="row">رقم التفويض</th>
