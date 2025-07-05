@@ -6,14 +6,12 @@ require __DIR__ . '/../env.php';
 loadEnv();
 
 $orderNumber = $_GET['order_number'] ?? null;
-
 if (!$orderNumber) {
-    die('Missing order number.');
+    http_response_code(400);
+    exit('Missing order number.');
 }
 
 $url = "https://epay.guiddini.dz/api/payment/receipt";
-$data = array('order_number' => $orderNumber);
-
 $headers = [
     "Accept: application/json",
     "Content-Type: application/json",
@@ -21,36 +19,28 @@ $headers = [
     "x-app-secret: " . getenv("X_ZAKAT_APP_SECRET")
 ];
 
-$ch = curl_init($url . '?' . http_build_query($data));
+$ch = curl_init($url . '?' . http_build_query(['order_number' => $orderNumber]));
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 $response = curl_exec($ch);
 curl_close($ch);
 
-$responseArray = json_decode($response, true);
-$pdfUrl = $responseArray['links']['href'] ?? null;
-
+$data = json_decode($response, true);
+$pdfUrl = $data['links']['href'] ?? null;
 if (!$pdfUrl) {
-    die('Unable to retrieve PDF URL.');
+    http_response_code(500);
+    exit('PDF URL not found.');
 }
-?>
 
-<!DOCTYPE html>
-<html lang="en">
+$ch = curl_init($pdfUrl);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+$pdfData = curl_exec($ch);
+$contentType = curl_getinfo($ch, CURLINFO_CONTENT_TYPE);
+curl_close($ch);
 
-<head>
-    <meta charset="UTF-8">
-    <title>Downloading PDF...</title>
-</head>
-
-<body>
-    <script>
-        window.open(<?php echo json_encode($pdfUrl); ?>, '_blank');
-        setTimeout(function() {
-            window.close();
-        }, 1000);
-    </script>
-
-</body>
-
-</html>
+header('Content-Type: ' . $contentType);
+header('Content-Disposition: attachment; filename="receipt_' . $orderNumber . '.pdf"');
+header('Content-Length: ' . strlen($pdfData));
+echo $pdfData;
+exit;
