@@ -17,18 +17,3 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-
-//  require_once 'env.php';
-
-// try {
-//     loadEnv();
-// } catch (Exception $e) {
-//     die("Error loading .env: " . $e->getMessage());
-// }
-
-// echo "X_ZAKAT_APP_KEY = " . getenv('X_ZAKAT_APP_KEY') . "<br>";
-// echo "X_ZAKAT_APP_SECRET = " . getenv('X_ZAKAT_APP_SECRET') . "<br>";
-
-
-// echo "X_WAKF_APP_KEY = " . getenv('X_WAKF_APP_KEY') . "<br>";
-// echo "X_WAKF_APP_SECRET = " . getenv('X_WAKF_APP_SECRET') . "<br>";

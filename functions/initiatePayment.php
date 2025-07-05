@@ -39,23 +39,9 @@ $response = curl_exec($ch);
 $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 curl_close($ch);
 
-// Decode response
 $result = json_decode($response, true);
 $formUrl = $result['data']['attributes']['form_url'];
-    header("Location: $formUrl");
-    exit;
+header("Location: $formUrl");
+exit;
 
-// If response is valid and contains form_url, redirect
-// if ($httpCode === 200 && isset($result['data']['attributes']['form_url'])) {
-//     $formUrl = $result['data']['attributes']['form_url'];
-//     header("Location: $formUrl");
-//     exit;
-// } else {
-//     // Fallback: show response for debugging
-//     http_response_code($httpCode);
-//     echo json_encode([
-//         'status' => $httpCode,
-//         'response' => $result
-//     ]);
-//     exit;
-// }
+

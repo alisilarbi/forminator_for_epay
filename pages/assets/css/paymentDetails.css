@@ -1,0 +1,21 @@
+.fixed-width-column {
+width: 350px;
+}
+
+.notification {
+display: none;
+position: fixed;
+top: 0;
+right: 0;
+padding: 10px;
+background-color: #4CAF50;
+color: white;
+z-index: 1000;
+}
+
+.close-notification {
+float: right;
+font-size: 20px;
+font-weight: bold;
+cursor: pointer;
+}
