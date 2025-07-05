@@ -133,9 +133,8 @@ if ($transaction && isset($transaction['status'])) {
                 var userEmail = $('#emailInput').val();
                 $.ajax({
                     type: 'GET',
-                    url: '<?php echo site_url('/wp-content/plugins/epay/functions/sendEmail.php'); ?>',
+                    url: '<?php echo site_url('/wp-content/plugins/epay/functions/downloadPdf.php'); ?>',
                     data: {
-                        email: userEmail,
                         order_number: orderNumber
                     },
                     success: function(response) {
@@ -149,18 +148,6 @@ if ($transaction && isset($transaction['status'])) {
                         $('#notificationModal').modal('show');
                     }
                 });
-            });
-        });
-        $(document).ready(function() {
-            $('#printPDFButton').click(function() {
-                fetch('<?php echo site_url('/wp-content/plugins/epay/functions/generateReceiptPDF.php'); ?>')
-                    .then(response => response.blob())
-                    .then(blob => {
-                        const url = URL.createObjectURL(blob);
-                        const printWindow = window.open(url, '_blank');
-                        printWindow.focus();
-                        printWindow.print();
-                    });
             });
         });
     </script>
