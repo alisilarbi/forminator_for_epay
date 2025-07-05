@@ -29,12 +29,9 @@ $response = curl_exec($ch);
 curl_close($ch);
 
 
-print_r(json_decode($response, true));
-die();
-
-
-
-
+$responseArray = json_decode($response, true);
+$transaction = $responseArray['data']['attributes'];
+$meta = $responseArray['meta'];
 ?>
 
 <!doctype html>
@@ -63,7 +60,7 @@ die();
                 <tr>
                     <th class="fixed-width-column" scope="row">Message de SATIM</th>
                     <td>
-                        <?php echo $result['message_return'] ?>
+                        <?php echo $transaction['action_code_description'] ?>
                     </td>
                 </tr>
                 <tr>
@@ -73,31 +70,31 @@ die();
                 <tr>
                     <th class="fixed-width-column" scope="row">Montant du paiement</th>
                     <td>
-                        <?php echo $result['total'] ?> DA
+                        <?php echo $transaction['deposit_amount'] ?> DA
                     </td>
                 </tr>
                 <tr>
                     <th class="fixed-width-column" scope="row">Numéro de commande</th>
                     <td>
-                        <?php echo $result['id'] ?>
+                        <?php echo $transaction['order_id'] ?>
                     </td>
                 </tr>
                 <tr>
                     <th class="fixed-width-column" scope="row">Identifiant de la transaction</th>
                     <td>
-                        <?php echo $result['order_id'] ?>
+                        <?php echo $transaction['order_number'] ?>
                     </td>
                 </tr>
                 <tr>
                     <th class="fixed-width-column" scope="row">Numéro d'autorisation</th>
                     <td>
-                        <?php echo $result['code'] ?>
+                        <?php echo $transaction['approval_code'] ?>
                     </td>
                 </tr>
                 <tr>
                     <th class="fixed-width-column" scope="row">Date & Heure de paiement</th>
                     <td>
-                        <?php echo $result['submission_time'] ?>
+                        <?php echo $transaction['updated_at'] ?>
                     </td>
                 </tr>
             </tbody>
