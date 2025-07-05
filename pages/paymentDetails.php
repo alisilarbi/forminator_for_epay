@@ -5,7 +5,7 @@ ini_set('display_errors', 1);
 require __DIR__ . '/../env.php';
 loadEnv();
 
-global $orderNumber;
+$orderNumber = $_GET['order_number'] ?? null;
 if (!isset($orderNumber)) {
     http_response_code(400);
     echo json_encode(['error' => 'Invalid or missing order number']);
