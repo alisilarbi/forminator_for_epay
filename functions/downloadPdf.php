@@ -37,19 +37,20 @@ if (!$pdfUrl) {
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Downloading PDF...</title>
 </head>
-<body>
-<script>
-    // Trigger PDF download
-    window.location.href = <?php echo json_encode($pdfUrl); ?>;
 
-    // Wait a bit then close the window
-    setTimeout(function () {
-        window.close();
-    }, 2000); // adjust delay as needed
-</script>
+<body>
+    <script>
+        window.open(<?php echo json_encode($pdfUrl); ?>, '_blank');
+        setTimeout(function() {
+            window.close();
+        }, 1000);
+    </script>
+
 </body>
+
 </html>
