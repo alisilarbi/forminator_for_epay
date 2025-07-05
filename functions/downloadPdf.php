@@ -40,7 +40,7 @@ $contentType = curl_getinfo($ch, CURLINFO_CONTENT_TYPE);
 curl_close($ch);
 
 header('Content-Type: ' . $contentType);
-header('Content-Disposition: attachment; filename="receipt_' . $orderNumber . '.pdf"');
+header('Content-Disposition: attachment; filename="' . $orderNumber . '.pdf"');
 header('Content-Length: ' . strlen($pdfData));
 echo $pdfData;
 exit;
