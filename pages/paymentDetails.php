@@ -125,26 +125,35 @@ if ($transaction && isset($transaction['status'])) {
         </div>
     </div>
     <script>
+        var orderNumber = '<?php echo $orderNumber; ?>';
+    </script>
+    <script>
         jQuery(document).ready(function($) {
             $('#sendEmailButton').on('click', function() {
                 var userEmail = $('#emailInput').val();
                 $.ajax({
                     type: 'GET',
-                    url: '<?php echo site_url('/wp-content/plugins/forminator_for_satim/functions/sendReceiptViaEmail.php'); ?>',
+                    url: '<?php echo site_url('/wp-content/plugins/epay/functions/sendEmail.php'); ?>',
                     data: {
-                        action: 'send_email_action',
                         email: userEmail,
+                        order_number: orderNumber
                     },
                     success: function(response) {
-                        $('#notification-message').text(response);
+                        try {
+                            var jsonResponse = JSON.parse(response);
+                            var message = jsonResponse.message || 'تم الإرسال بنجاح';
+                            $('#notification-message').text(message);
+                        } catch (e) {
+                            $('#notification-message').text('حدث خطأ أثناء إرسال البريد الإلكتروني');
+                        }
                         $('#notificationModal').modal('show');
-                    },
+                    }
                 });
             });
         });
         $(document).ready(function() {
             $('#printPDFButton').click(function() {
-                fetch('<?php echo site_url('/wp-content/plugins/forminator_for_satim/functions/generateReceiptPDF.php'); ?>')
+                fetch('<?php echo site_url('/wp-content/plugins/epay/functions/generateReceiptPDF.php'); ?>')
                     .then(response => response.blob())
                     .then(blob => {
                         const url = URL.createObjectURL(blob);
