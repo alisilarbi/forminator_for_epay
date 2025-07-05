@@ -1,19 +1,4 @@
-<?php
-require_once('../../../../wp-load.php');
 
-if (!session_id())
-    session_start();
-
-$orderNumber = get_transient('orderNumber');
-
-if (!$orderNumber) {
-    echo 'Nope, no data snooping please. I have your ip address : ' . $_SERVER['REMOTE_ADDR'];
-    die();
-}
-
-$query = $wpdb->prepare("SELECT * FROM `{$wpdb->prefix}forminator_for_satim_orders` WHERE `id` = %s", $orderNumber);
-$result = $wpdb->get_row($query, ARRAY_A);
-?>
 <!doctype html>
 <html lang="fr">
 
