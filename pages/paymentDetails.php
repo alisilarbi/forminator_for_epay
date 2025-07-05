@@ -2,6 +2,9 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
+require_once('../../../../wp-load.php');
+
+
 require __DIR__ . '/../env.php';
 loadEnv();
 
