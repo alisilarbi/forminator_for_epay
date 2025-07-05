@@ -92,12 +92,9 @@ if ($transaction && isset($transaction['status'])) {
             </tbody>
         </table>
         <div>
-            <label for="emailInput">إرسال عبر البريد الإلكتروني:</label>
+            <label for="emailInput">إرسال إيصال الدفع:</label>
             <div class="d-flex flex-row justify-content-between">
-                <input type="text" id="emailInput" placeholder="بريدك الإلكتروني">
-                <button id="sendEmailButton" class="mx-2">إرسال البريد الإلكتروني</button>
                 <a class="btn btn-outline-secondary mx-2" href="<?php echo site_url('/wp-content/plugins/forminator_for_satim/functions/generateReceiptPDF.php'); ?>" target="_blank">تحميل PDF</a>
-                <button class="btn btn-outline-secondary mx-2" id="printPDFButton">طباعة</button>
             </div>
         </div>
     </div>
