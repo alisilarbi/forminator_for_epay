@@ -7,6 +7,9 @@ loadEnv();
 
 $orderNumber = $_GET['order_number'] ?? null;
 
+if (!$orderNumber) {
+    die('Missing order number.');
+}
 
 $url = "https://epay.guiddini.dz/api/payment/receipt";
 $data = array('order_number' => $orderNumber);
@@ -24,4 +27,29 @@ curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 $response = curl_exec($ch);
 curl_close($ch);
 
-echo $response;
+$responseArray = json_decode($response, true);
+$pdfUrl = $responseArray['links']['href'] ?? null;
+
+if (!$pdfUrl) {
+    die('Unable to retrieve PDF URL.');
+}
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Downloading PDF...</title>
+</head>
+<body>
+<script>
+    // Trigger PDF download
+    window.location.href = <?php echo json_encode($pdfUrl); ?>;
+
+    // Wait a bit then close the window
+    setTimeout(function () {
+        window.close();
+    }, 2000); // adjust delay as needed
+</script>
+</body>
+</html>
